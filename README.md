@@ -38,7 +38,7 @@ Android Studio will take a few moments to generate an APK file.
 
 Once the APK build is complete, you’ll receive a notification on the bottom right corner of your screen. From that notification, select <b>Locate</b> and you will be led to the APK file location.
 
-   <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/2723/posts/37927/image-upload/locating%20file%20after%20build%20.jpgg" alt="drawing" width="800"/>
+   <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/2723/posts/37927/image-upload/locating%20file%20after%20build%20.jpg" alt="drawing" width="800"/>
 
 If you miss the notification, you can still locate the APK file in the following path within your project folder: <b>app/build/outputs/apk/debug.</b> The file is named <b>app-debug.apk</b> by default.
 
