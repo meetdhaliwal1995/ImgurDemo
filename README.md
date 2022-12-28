@@ -24,7 +24,7 @@ Please follow these steps to run this project in your test device or to build an
 
     <img src="https://developer.android.com/static/studio/images/run/deploy-run-app.png" alt="drawing" width="800"/>
 
-If you don't have any devices configured, you need to either create an Android Virtual Device to use the Android Emulator or connect a physical device.
+   If you don't have any devices configured, you need to either create an Android Virtual Device to use the Android Emulator or connect a physical device.
 
 3. Click Run .
 
