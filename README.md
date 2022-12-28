@@ -8,10 +8,10 @@ To setup this project locally into Android Studio, proceed as follows:
     3. Click Import.
 
 > Grid
-![alt text](https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/master/app/sampledata/Screenshot_20221228-202338_Interview%20Task.jpg)
+<img src="https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/master/app/sampledata/Screenshot_20221228-202338_Interview%20Task.jpg" alt="drawing" width="200"/>
 
 > List
-![alt text](https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/master/app/sampledata/Screenshot_20221228-202343_Interview%20Task.jpg)
+<img src="https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/master/app/sampledata/Screenshot_20221228-202343_Interview%20Task.jpg" alt="drawing" width="200"/>
 
 > Error Screen
-![alt text](https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/8aae7ad02a7c320c7fce13872d92923d2b84a82f/app/sampledata/Screenshot_20221228-202019_Interview%20Task.jpg)
+<img src="https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/8aae7ad02a7c320c7fce13872d92923d2b84a82f/app/sampledata/Screenshot_20221228-202019_Interview%20Task.jpg" alt="drawing" width="200"/>
