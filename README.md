@@ -50,3 +50,5 @@ If you miss the notification, you can still locate the APK file in the following
 
 ## Error Screen
 <img src="https://raw.githubusercontent.com/meetdhaliwal1995/ImgurDemo/8aae7ad02a7c320c7fce13872d92923d2b84a82f/app/sampledata/Screenshot_20221228-202019_Interview%20Task.jpg" alt="drawing" width="300"/>
+
+Copyright © Manjit Singh Dhaliwal
