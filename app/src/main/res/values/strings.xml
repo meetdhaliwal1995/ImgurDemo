@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Interview Task</string>
+    <string name="search_here">Search here…</string>
+    <string name="title">title</string>
+    <string name="time_date">Time/Date</string>
+    <string name="imgur_images">Imgur Images</string>
+    <string name="search_button_description">search_button_description</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="error">Something went wrong</string>
+</resources>
