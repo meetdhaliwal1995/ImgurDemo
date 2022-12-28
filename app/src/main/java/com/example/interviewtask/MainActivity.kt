@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding?.searchButton?.setOnClickListener(this)
         binding?.tButton?.setOnClickListener(this)
         binding?.searchEdit?.setOnClickListener(this)
-        binding?.titleTextView?.setOnClickListener(this)
 
         binding?.swipeRefreshLayout?.setOnRefreshListener {
             mainActivityViewModel.getViralImages()
@@ -153,9 +152,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.searchEdit -> {
                 submitSearch()
-            }
-            R.id.title_text_view -> {
-                mainActivityViewModel.getViralImages()
             }
         }
     }
