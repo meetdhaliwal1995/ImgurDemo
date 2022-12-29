@@ -1,6 +1,8 @@
 package com.example.interviewtask
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,21 +36,22 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
     inner class NoteViewHolder(private val binding: ImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(note: Data) {
-            binding.textDate.text = convertDateTime(note.datetime)
-            binding.titleText.text = note.title
-            if (note.images?.isNotEmpty() == true){
+        fun bind(imzData: Data) {
+            binding.textDate.text = convertDateTime(imzData.datetime)
+            binding.titleText.text = imzData.title
+            if (imzData.images?.isNotEmpty() == true){
                 binding.imageCount.visibility = View.VISIBLE
-                binding.imageCount.text = note.images.size.toString()
+                binding.imageCount.text = imzData.images.size.toString()
             }
 
             Glide.with(context)
-                .load(note?.images?.get(0)?.link ?: "")
+                .load(imzData.images?.get(0)?.link ?: "")
                 .error(android.R.drawable.ic_menu_report_image)
                 .into(binding.imageView)
 
             binding.root.setOnClickListener {
-                onNoteClicked(note)
+                onNoteClicked(imzData)
+                Log.e("CLickkkk",imzData.id)
             }
         }
 
@@ -64,6 +67,7 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun convertDateTime(date: Int): String {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = (date * 1000L)

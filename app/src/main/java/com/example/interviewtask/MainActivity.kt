@@ -3,7 +3,6 @@ package com.example.interviewtask
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding?.searchButton?.setOnClickListener(this)
         binding?.tButton?.setOnClickListener(this)
-        binding?.searchEdit?.setOnClickListener(this)
+        binding?.searchBtn?.setOnClickListener(this)
 
         binding?.swipeRefreshLayout?.setOnRefreshListener {
             mainActivityViewModel.getViralImages()
@@ -136,12 +135,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding?.searchButton?.let { hideKeyboard(it) }
         manageSearchBar(false)
 
+
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.searchButton -> {
                 manageSearchBar(true)
+                binding?.searchEditText?.text = null
+                showKeyboard(v)
             }
             R.id.tButton -> {
                 if (count == 3) {
@@ -150,7 +152,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     listGridToggle(3)
                 }
             }
-            R.id.searchEdit -> {
+            R.id.searchBtn -> {
                 submitSearch()
             }
         }

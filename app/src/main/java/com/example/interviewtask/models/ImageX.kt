@@ -28,7 +28,6 @@ data class ImageX(
     val mp4Size: Int,
     val nsfw: Any,
     val points: Any,
-    val processing: Processing,
     val score: Any,
     val section: Any,
     val size: Int,
