@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.interviewtask.helper.ResultWrapper
-import com.example.interviewtask.models.Data
+import com.example.interviewtask.models.ImageModel.Data
 import com.example.interviewtask.repository.ImageRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

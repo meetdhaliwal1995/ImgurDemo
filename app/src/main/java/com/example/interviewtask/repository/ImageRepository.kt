@@ -2,7 +2,7 @@ package com.example.interviewtask.repository
 
 import com.example.interviewtask.helper.NetworkHelper
 import com.example.interviewtask.helper.ResultWrapper
-import com.example.interviewtask.models.ViralImage
+import com.example.interviewtask.models.ImageModel.ViralImage
 import com.example.interviewtask.R
 import com.example.interviewtask.Utils
 import com.example.interviewtask.retrofit.MyApi

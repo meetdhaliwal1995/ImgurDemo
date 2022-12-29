@@ -1,20 +1,21 @@
-package com.example.interviewtask.models
+package com.example.interviewtask.models.ImageModel
 
+import kotlinx.android.parcel.Parcelize
 
 data class ImageX(
-    val accountId: Any,
-    val accountUrl: Any,
+    val accountId: String,
+    val accountUrl: String,
     val adType: Int,
     val adUrl: String,
     val animated: Boolean,
     val bandwidth: Long,
-    val commentCount: Any,
+    val commentCount: String,
     val datetime: Int,
     val description: String,
-    val downs: Any,
+    val downs: String,
     val edited: String,
     val favorite: Boolean,
-    val favoriteCount: Any,
+    val favoriteCount: String,
     val gifv: String,
     val hasSound: Boolean,
     val height: Int,
@@ -26,16 +27,16 @@ data class ImageX(
     val link: String,
     val mp4: String,
     val mp4Size: Int,
-    val nsfw: Any,
-    val points: Any,
-    val score: Any,
-    val section: Any,
+    val nsfw: String,
+    val points: String,
+    val score: String,
+    val section: String,
     val size: Int,
-    val tags: List<Any>,
-    val title: Any,
+    val tags: List<String>,
+    val title: String,
     val type: String,
-    val ups: Any,
+    val ups: String,
     val views: Int,
-    val vote: Any,
+    val vote: String,
     val width: Int
 )

@@ -1,4 +1,4 @@
-package com.example.interviewtask
+package com.example.interviewtask.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.interviewtask.models.Data
+import com.example.interviewtask.models.ImageModel.Data
 import com.example.interviewtask.databinding.ImageItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,7 +39,7 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
         fun bind(imzData: Data) {
             binding.textDate.text = convertDateTime(imzData.datetime)
             binding.titleText.text = imzData.title
-            if (imzData.images?.isNotEmpty() == true){
+            if (imzData.images?.isNotEmpty() == true) {
                 binding.imageCount.visibility = View.VISIBLE
                 binding.imageCount.text = imzData.images.size.toString()
             }
@@ -51,7 +51,6 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
 
             binding.root.setOnClickListener {
                 onNoteClicked(imzData)
-                Log.e("CLickkkk",imzData.id)
             }
         }
 

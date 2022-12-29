@@ -1,4 +1,4 @@
-package com.example.interviewtask.models
+package com.example.interviewtask.models.ImageModel
 
 import androidx.annotation.Keep
 

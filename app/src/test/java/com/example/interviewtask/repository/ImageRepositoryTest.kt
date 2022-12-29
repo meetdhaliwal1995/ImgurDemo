@@ -1,7 +1,7 @@
 package com.example.interviewtask.repository
 
 import com.example.interviewtask.helper.ResultWrapper
-import com.example.interviewtask.models.ViralImage
+import com.example.interviewtask.models.ImageModel.ViralImage
 import com.example.interviewtask.retrofit.MyApi
 import kotlinx.coroutines.flow.first
 import org.junit.Assert

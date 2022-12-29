@@ -1,4 +1,4 @@
-package com.example.interviewtask.models
+package com.example.interviewtask.models.ImageModel
 
 
 data class Data(
@@ -12,7 +12,7 @@ data class Data(
     val coverHeight: Int,
     val coverWidth: Int,
     val datetime: Int,
-    val description: Any,
+    val description: String,
     val downs: Int,
     val favorite: Boolean,
     val favoriteCount: Int,
