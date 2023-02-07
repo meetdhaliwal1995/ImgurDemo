@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding?.searchButton?.setOnClickListener(this)
         binding?.tButton?.setOnClickListener(this)
         binding?.searchBtn?.setOnClickListener(this)
+        binding?.ivUploadBtn?.setOnClickListener(this)
 
         binding?.swipeRefreshLayout?.setOnRefreshListener {
             mainActivityViewModel.getViralImages()
@@ -162,6 +163,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.searchBtn -> {
                 submitSearch()
+            }
+            R.id.ivUploadBtn -> {
+                val intent = Intent(this, ActivityUploadImage::class.java)
+                startActivity(intent)
             }
         }
     }

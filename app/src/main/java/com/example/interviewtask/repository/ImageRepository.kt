@@ -1,13 +1,17 @@
 package com.example.interviewtask.repository
 
+import android.media.Image
 import com.example.interviewtask.helper.NetworkHelper
 import com.example.interviewtask.helper.ResultWrapper
 import com.example.interviewtask.models.ImageModel.ViralImage
 import com.example.interviewtask.R
 import com.example.interviewtask.Utils
+import com.example.interviewtask.models.ModelResponse
 import com.example.interviewtask.retrofit.MyApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MultipartBody
+import java.io.File
 import javax.inject.Inject
 
 /**
@@ -38,6 +42,20 @@ class ImageRepository @Inject constructor(private val myApi: MyApi) {
             } else {
                 val err = NetworkHelper.ErrorResponse()
                 err.message = Utils.convertString(R.string.error)
+                emit(ResultWrapper.GenericError(error = err))
+            }
+        }
+    }
+
+    suspend fun uploadImage( file: MultipartBody.Part): Flow<ResultWrapper<ModelResponse>> {
+        return flow {
+            val response = myApi.uploadImage(file)
+
+            if (response.isSuccessful) {
+                response.body()?.let { emit(ResultWrapper.Success(it)) }
+            } else {
+                val err = NetworkHelper.ErrorResponse()
+//                err.message = Utils.convertString(R.string.error)
                 emit(ResultWrapper.GenericError(error = err))
             }
         }
