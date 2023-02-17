@@ -25,10 +25,9 @@ interface MyApi {
     ): Response<ViralImage>
 
     @Multipart
-    @Headers("Content-Type: application/json", "Authorization: ${Constant.IMGUR_TOKEN}")
+    @Headers("Authorization: ${Constant.IMGUR_TOKEN}")
     @POST("upload")
     suspend fun uploadImage(
-//        @Part type: MultipartBody.Part,
         @Part image: MultipartBody.Part
     ): Response<ModelResponse>
 

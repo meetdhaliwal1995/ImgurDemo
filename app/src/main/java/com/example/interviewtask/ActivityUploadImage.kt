@@ -4,21 +4,28 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.FileUtils
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.interviewtask.databinding.ActivityUploadImageBinding
 import com.example.interviewtask.viewmodel.MainActivityViewModel
 import com.example.interviewtask.viewmodel.MainViewModelFactory
-import okhttp3.MediaType
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.Util
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import javax.inject.Inject
+
 
 class ActivityUploadImage : AppCompatActivity() {
     private var _binding: ActivityUploadImageBinding? = null
@@ -27,8 +34,13 @@ class ActivityUploadImage : AppCompatActivity() {
     private val REQUEST_CODE = 1888
     var imagePath: File? = null
 
+    private lateinit var player: SimpleExoPlayer
+
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
+
+    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +57,23 @@ class ActivityUploadImage : AppCompatActivity() {
             selectImageFromGallery()
         }
 
+        binding?.exoPlayer?.setOnClickListener {
+            selectImageFromGallery()
+        }
+
         binding?.btnUpload?.setOnClickListener {
-            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imagePath!!)
-            val image = MultipartBody.Part.createFormData("image", imagePath?.name, requestFile)
-            mainActivityViewModel.uploadImage(image)
-            manageProgressBar(true)
+            if (imagePath.toString().contains("Images")){
+                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imagePath!!)
+                val image = MultipartBody.Part.createFormData("image", imagePath!!.name, requestFile)
+                mainActivityViewModel.uploadImage(image)
+                manageProgressBar(true)
+            }else{
+                val requestFile = videoFile.asRequestBody("video/*".toMediaTypeOrNull())
+                val requestBody = MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("video", videoFile.name, requestFile)
+                    .build()
+            }
 
         }
 
@@ -71,8 +95,9 @@ class ActivityUploadImage : AppCompatActivity() {
     }
 
     private fun selectImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_CODE)
+        val pickIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        pickIntent.type = "*/*"
+        startActivityForResult(pickIntent, REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,7 +105,16 @@ class ActivityUploadImage : AppCompatActivity() {
 
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val selectedImage = data.data
-            imageUri(selectedImage!!)
+            Log.e("imageImageee", selectedImage.toString())
+            if (selectedImage.toString().contains("video")) {
+                binding?.exoPlayer?.visibility = View.VISIBLE
+                binding?.ivUpload?.visibility = View.GONE
+                initializePlayer(selectedImage!!)
+            } else {
+                binding?.ivUpload?.visibility = View.VISIBLE
+                binding?.exoPlayer?.visibility = View.GONE
+                imageUri(selectedImage!!)
+            }
         }
     }
 
@@ -93,8 +127,28 @@ class ActivityUploadImage : AppCompatActivity() {
         cursor.close()
         imagePath = File(filePath)
         binding?.ivUpload?.setImageURI(Uri.fromFile(imagePath))
+        Log.e("imagePathhhh", imagePath.toString())
+
 
     }
+
+    private fun initializePlayer(videoUri: Uri) {
+        val dataSourceFactory =
+            DefaultDataSourceFactory(this, Util.getUserAgent(this, "Your Application Name"))
+        val mediaItem = MediaItem.fromUri(videoUri)
+        val mediaSource =
+            ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(mediaItem)
+
+        player = SimpleExoPlayer.Builder(this)
+            .build()
+        player.playWhenReady = true
+        player.repeatMode = Player.REPEAT_MODE_ONE
+        player.setMediaSource(mediaSource)
+        player.prepare()
+
+        binding?.exoPlayer?.player = player
+    }
+
 
     private fun manageProgressBar(show: Boolean) {
         if (show) {
@@ -106,6 +160,7 @@ class ActivityUploadImage : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        player.release()
         _binding = null
     }
 
