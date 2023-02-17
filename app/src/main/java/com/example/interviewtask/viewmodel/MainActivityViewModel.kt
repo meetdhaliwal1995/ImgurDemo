@@ -96,4 +96,6 @@ class MainActivityViewModel @Inject constructor(private val imageRepository: Ima
             data.datetime
         }
     }
+
+
 }
