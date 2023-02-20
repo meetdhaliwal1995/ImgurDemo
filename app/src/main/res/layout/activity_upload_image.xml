@@ -5,77 +5,92 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/top_bar"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_700"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:drawablePadding="20dp"
-            android:gravity="center"
-            android:text="Upload Image"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/teal_700"
+                android:gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/exoPlayer"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivUpload" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center"
+                    android:text="Upload Image"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivUpload"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/black"
-        android:scaleType="fitXY"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_bar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:background="@color/teal_700"
-        android:padding="10dp"
-        android:text="Upload"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:textAllCaps="true" />
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/exoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivUpload"
+                app:resize_mode="fill" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivUpload"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/black"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_bar" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="500dp"
+                android:background="@color/teal_700"
+                android:padding="10dp"
+                android:text="Upload"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textAllCaps="true" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
