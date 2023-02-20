@@ -1,7 +1,5 @@
 package com.example.interviewtask.repository
 
-import android.media.Image
-import android.util.Log
 import com.example.interviewtask.helper.NetworkHelper
 import com.example.interviewtask.helper.ResultWrapper
 import com.example.interviewtask.models.ImageModel.ViralImage
@@ -12,7 +10,6 @@ import com.example.interviewtask.retrofit.MyApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
-import java.io.File
 import javax.inject.Inject
 
 /**
@@ -53,10 +50,8 @@ class ImageRepository @Inject constructor(private val myApi: MyApi) {
             val response = myApi.uploadImage(file)
 
             if (response.isSuccessful) {
-                Log.e("uploaddd","successs")
                 response.body()?.let { emit(ResultWrapper.Success(it)) }
             } else {
-                Log.e("uploaddd","failureee")
                 val err = NetworkHelper.ErrorResponse()
 //                err.message = Utils.convertString(R.string.error)
                 emit(ResultWrapper.GenericError(error = err))

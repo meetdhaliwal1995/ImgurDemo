@@ -28,7 +28,7 @@ class ActivitySingleImage : AppCompatActivity() {
                 .into(it)
         }
 
-        binding?.tvTitle?.text = getIntentTitle
+        binding?.titleImage?.text = getIntentTitle
         binding?.tvViews?.text = getIntentViews
         binding?.tvDescription?.text = getIntentDescription
 
