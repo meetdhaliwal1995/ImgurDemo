@@ -1,13 +1,14 @@
 package com.example.interviewtask
 
+import com.example.interviewtask.adapter.ImagePagerAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.example.interviewtask.databinding.ActivityMainBinding
 import com.example.interviewtask.databinding.ActivitySingleImageBinding
+import com.example.interviewtask.models.ImageModel.ImageXX
 
-class ActivitySingleImage : AppCompatActivity() {
+
+class ActivitySingleImage : AppCompatActivity(), java.io.Serializable {
     private var _binding: ActivitySingleImageBinding? = null
     private val binding get() = _binding
 
@@ -16,21 +17,13 @@ class ActivitySingleImage : AppCompatActivity() {
         _binding = ActivitySingleImageBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val getIntentLink = intent.getStringExtra("link")
-        val getIntentViews = intent.getStringExtra("views")
+        val mylist = intent.getSerializableExtra("myData")
         val getIntentTitle = intent.getStringExtra("title")
-        val getIntentDescription = intent.getStringExtra("description")
 
-        binding?.ivImage?.let {
-            Glide.with(this)
-                .load(getIntentLink)
-                .error(android.R.drawable.ic_menu_report_image)
-                .into(it)
-        }
+        val adapter = ImagePagerAdapter(this, mylist as List<ImageXX>)
+        binding?.viewPager?.adapter = adapter
 
         binding?.titleImage?.text = getIntentTitle
-        binding?.tvViews?.text = getIntentViews
-        binding?.tvDescription?.text = getIntentDescription
 
     }
 
@@ -38,4 +31,6 @@ class ActivitySingleImage : AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
+
 }
+

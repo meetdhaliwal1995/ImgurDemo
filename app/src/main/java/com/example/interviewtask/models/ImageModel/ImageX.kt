@@ -1,6 +1,7 @@
 package com.example.interviewtask.models.ImageModel
 
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 data class ImageX(
     val accountId: String,
@@ -39,4 +40,4 @@ data class ImageX(
     val views: Int,
     val vote: String,
     val width: Int
-)
+): Serializable

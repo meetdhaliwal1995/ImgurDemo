@@ -2,7 +2,6 @@ package com.example.interviewtask
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import com.example.interviewtask.adapter.ImageAdapter
 import com.example.interviewtask.databinding.ActivityMainBinding
 import com.example.interviewtask.viewmodel.MainActivityViewModel
 import com.example.interviewtask.viewmodel.MainViewModelFactory
+import java.util.ArrayList
 import javax.inject.Inject
 
 
@@ -38,12 +38,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         bindObservers()
 
+
         adapter = ImageAdapter(this) {
             val intent = Intent(this, ActivitySingleImage::class.java)
-            intent.putExtra("link", it.images?.get(0)?.link)
-            intent.putExtra("views", it.images?.get(0)?.views)
-            intent.putExtra("description", it.images?.get(0)?.description)
             intent.putExtra("title", it.title)
+            intent.putExtra("myData", it.images as ArrayList)
             startActivity(intent)
         }
 

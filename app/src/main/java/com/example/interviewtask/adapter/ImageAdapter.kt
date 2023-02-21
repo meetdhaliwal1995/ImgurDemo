@@ -2,14 +2,13 @@ package com.example.interviewtask.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.interviewtask.models.ImageModel.Data
+import com.example.interviewtask.models.ImageModel.DataImage
 import com.example.interviewtask.databinding.ImageItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,8 +17,8 @@ import java.util.*
 // it is typically used in conjunction with the Android DiffUtil class to calculate the differences between two lists of items and display them in a RecyclerView.
 
 
-class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Unit) :
-    androidx.recyclerview.widget.ListAdapter<Data, ImageAdapter.NoteViewHolder>(ComparatorDiffUtil()) {
+class ImageAdapter(val context: Context, private val onNoteClicked: (DataImage) -> Unit) :
+    androidx.recyclerview.widget.ListAdapter<DataImage, ImageAdapter.NoteViewHolder>(ComparatorDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = ImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -36,7 +35,7 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
     inner class NoteViewHolder(private val binding: ImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(imzData: Data) {
+        fun bind(imzData: DataImage) {
             binding.textDate.text = convertDateTime(imzData.datetime)
             binding.titleText.text = imzData.title
             if (imzData.images?.isNotEmpty() == true) {
@@ -56,12 +55,12 @@ class ImageAdapter(val context: Context, private val onNoteClicked: (Data) -> Un
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<DataImage>() {
+        override fun areItemsTheSame(oldItem: DataImage, newItem: DataImage): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+        override fun areContentsTheSame(oldItem: DataImage, newItem: DataImage): Boolean {
             return oldItem == newItem
         }
     }

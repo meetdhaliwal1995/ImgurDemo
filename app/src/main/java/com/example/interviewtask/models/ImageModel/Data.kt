@@ -1,5 +1,7 @@
 package com.example.interviewtask.models.ImageModel
 
+import java.io.Serializable
+
 
 data class Data(
     val accountId: Int,
@@ -17,7 +19,7 @@ data class Data(
     val favorite: Boolean,
     val favoriteCount: Int,
     val id: String,
-    val images: List<ImageX>?,
+    val images: List<ImageXX>?,
     val imagesCount: Int,
     val inGallery: Boolean,
     val inMostViral: Boolean,
@@ -38,4 +40,4 @@ data class Data(
     val ups: Int,
     val views: Int,
     val vote: Any
-)
+): Serializable

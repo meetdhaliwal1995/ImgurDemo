@@ -1,28 +1,26 @@
 package com.example.interviewtask.viewmodel
 
-import android.view.Display.Mode
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.interviewtask.helper.ResultWrapper
-import com.example.interviewtask.models.ImageModel.Data
+import com.example.interviewtask.models.ImageModel.DataImage
 import com.example.interviewtask.models.ModelResponse
 import com.example.interviewtask.repository.ImageRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(private val imageRepository: ImageRepository) :
     ViewModel() {
 
-    private val _imageData: MutableLiveData<List<Data?>?> = MutableLiveData()
-    val imageData: MutableLiveData<List<Data?>?> = _imageData
+    private val _imageData: MutableLiveData<List<DataImage?>?> = MutableLiveData()
+    val imageData: MutableLiveData<List<DataImage?>?> = _imageData
 
-    private val _searchImage: MutableLiveData<List<Data?>?> = MutableLiveData()
-    val searchImage: LiveData<List<Data?>?> = _searchImage
+    private val _searchImage: MutableLiveData<List<DataImage?>?> = MutableLiveData()
+    val searchImage: LiveData<List<DataImage?>?> = _searchImage
 
     private val _uploadImage: MutableLiveData<ModelResponse?> = MutableLiveData()
     val uploadImage: LiveData<ModelResponse?> = _uploadImage
@@ -91,7 +89,7 @@ class MainActivityViewModel @Inject constructor(private val imageRepository: Ima
         }
     }
 
-    private fun sortListByTimeDescending(listData: List<Data>?): List<Data>? {
+    private fun sortListByTimeDescending(listData: List<DataImage>?): List<DataImage>? {
         return listData?.sortedByDescending { data ->
             data.datetime
         }
