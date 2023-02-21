@@ -7,10 +7,17 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.interviewtask.adapter.ImageAdapter
+import com.example.interviewtask.database.ImageDataBase
+import com.example.interviewtask.database.ImageTable
 import com.example.interviewtask.databinding.ActivityMainBinding
 import com.example.interviewtask.viewmodel.MainActivityViewModel
 import com.example.interviewtask.viewmodel.MainViewModelFactory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 import javax.inject.Inject
 
@@ -22,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mainActivityViewModel: MainActivityViewModel
     lateinit var adapter: ImageAdapter
     private var count = 3
+    lateinit var database: ImageDataBase
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
@@ -36,8 +44,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainActivityViewModel =
             ViewModelProvider(this, mainViewModelFactory)[MainActivityViewModel::class.java]
 
+        database = Room.databaseBuilder(this, ImageDataBase::class.java, "imageDB").build()
         bindObservers()
 
+        GlobalScope.launch {
+            database.imageDao().insertImages(ImageTable(12, "manjit", "dhaliwal"))
+        }
 
         adapter = ImageAdapter(this) {
             val intent = Intent(this, ActivitySingleImage::class.java)
