@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Database
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.interviewtask.adapter.ImageAdapter
 import com.example.interviewtask.database.ImageDataBase
 import com.example.interviewtask.database.ImageTable
 import com.example.interviewtask.databinding.ActivityMainBinding
+import com.example.interviewtask.fragments.FragmentSingleImage
 import com.example.interviewtask.viewmodel.MainActivityViewModel
+import com.example.interviewtask.viewmodel.MainActivityViewModel_Factory.newInstance
 import com.example.interviewtask.viewmodel.MainViewModelFactory
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -39,16 +42,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+        database = ImageDataBase.getDatabase(this)
         (application as ImageApplication).applicationComponent.inject(this)
 
         mainActivityViewModel =
             ViewModelProvider(this, mainViewModelFactory)[MainActivityViewModel::class.java]
 
-        database = Room.databaseBuilder(this, ImageDataBase::class.java, "imageDB").build()
         bindObservers()
 
         GlobalScope.launch {
-            database.imageDao().insertImages(ImageTable(12, "manjit", "dhaliwal"))
+//            database.imageDao().insertImages(ImageTable(12, "manjit", "dhaliwal"))
         }
 
         adapter = ImageAdapter(this) {
